@@ -21,9 +21,12 @@ import random
 
 #VARIABLES
 allcards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']*4
+#Starting chips
+userchip = [5000]*4+[1000]*8+[500]*2+[100]*8+[25]*8
+dealerchip = [5000]*4+[1000]*8+[500]*2+[100]*8+[25]*8
 
-#CLASS PLAYER WITH METHODS
-class Player:
+#CLASS HAND WITH METHODS
+class Hand:
     def __init__(self):
         self.cards = []
     
@@ -77,9 +80,9 @@ class Player:
 
 #User Story: As a user I want to clearly see the cards dealt to me and to the dealer.
 def blackjack():
-    #create Player objects at start of game
-    user = Player()
-    dealer = Player()
+    #empty player hands at start of game
+    user = Hand()
+    dealer = Hand()
     random.shuffle(allcards)
     print(allcards)
 
