@@ -101,12 +101,25 @@ def blackjack():
         print("Dealer total: " + str(calculateSum(dealer)))
         choice = raw_input("Do you want to stay? Y or N. \n \n")
         if choice == "Y":
-            print(hit(dealer))
-            print("User total: " + str(calculateSum(user)))
-            print("Dealer total: " + str(calculateSum(dealer)))
-            if didBust(dealer):
-                print("DEALER BUSTED! You win.")
-                break
+            dealerTotal = calculateSum(dealer)
+            if dealerTotal>=17:
+                #Dealer stays
+                if calculateSum(user)>calculateSum(dealer):
+                    print("You win.")
+                    break
+                elif calculateSum(user)==calculateSum(dealer):
+                    print("You tied.")
+                    break
+                else:
+                    print("Sorry! You lost.")
+                    break
+            else:
+                print(hit(dealer))
+                print("User total: " + str(calculateSum(user)))
+                print("Dealer total: " + str(calculateSum(dealer)))
+                if didBust(dealer):
+                    print("DEALER BUSTED! You win.")
+                    break
         elif choice == "N":
             print(hit(user))
             print("User total: " + str(calculateSum(user)))
@@ -117,15 +130,15 @@ def blackjack():
                 print(hit(dealer))
                 print("Dealer total: " + str(calculateSum(dealer)))
                 if didBust(dealer):
-                print("DEALER BUSTED! You win.")
-                break
+                    print("DEALER BUSTED! You win.")
+                    break
     
     #User Story: As a user I want to be able to quit the game or go again after each cycle.
     #reruns program if user answers Yes
-    restart = input("Play again? Yes or No: ")
-    if restart == "Yes" or restart == "yes":
+    restart = raw_input("Play again? Yes or No: ")
+    if restart == "Yes" or restart == "yes" or restart == "Y" or restart == "y":
         print()
-        rps()
+        blackjack()
     else:
         print("Thanks for playing!")
 
